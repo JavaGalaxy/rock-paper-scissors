@@ -10,6 +10,7 @@ const getRandomMove = (): Move => {
 };
 
 function App() {
+  // eslint-disable-next-line
   const [computerMove, setComputerMove] = useState<Move>(getRandomMove());
 
   return <div className="App">Computer move: {computerMove}</div>;
