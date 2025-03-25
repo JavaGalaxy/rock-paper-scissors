@@ -20,8 +20,12 @@ function App() {
 
   return (
     <div className="App">
-      Computer move: {computerMove}
-      Player's move : {playersMove}
+      <div>
+        <h2>Computer chose: {computerMove}</h2>
+      </div>
+      <div>
+        <h2>Player chose: {playersMove}</h2>
+      </div>
       <div>
         <button onClick={() => handleClick('rock')}>Rock</button>
         <button onClick={() => handleClick('paper')}>Paper</button>
