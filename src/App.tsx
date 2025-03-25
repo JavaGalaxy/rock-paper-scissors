@@ -14,10 +14,6 @@ function App() {
   const [computerMove, setComputerMove] = useState<Move>(getRandomMove());
   const [playersMove, setPlayersMove] = useState<Move | null>(null);
 
-  const handleClick = (move: Move) => {
-    setPlayersMove(move);
-  };
-
   return (
     <div className="App">
       <div>
@@ -27,9 +23,9 @@ function App() {
         <h2>Player chose: {playersMove}</h2>
       </div>
       <div>
-        <button onClick={() => handleClick('rock')}>Rock</button>
-        <button onClick={() => handleClick('paper')}>Paper</button>
-        <button onClick={() => handleClick('scissors')}>Scissors</button>
+        <button onClick={() => setPlayersMove('rock')}>Rock</button>
+        <button onClick={() => setPlayersMove('paper')}>Paper</button>
+        <button onClick={() => setPlayersMove('scissors')}>Scissors</button>
       </div>
     </div>
   );
