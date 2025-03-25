@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import './App.css';
 
-type Move = 'rock' | 'paper' | 'scissors';
-const Moves: readonly Move[] = ['rock', 'paper', 'scissors'];
+const MOVES = ['rock', 'paper', 'scissors'] as const;
+type Move = (typeof MOVES)[number];
 
 const getRandomMove = (): Move => {
-  const index = Math.floor(Math.random() * Moves.length);
-  return Moves[index];
+  const index = Math.floor(Math.random() * MOVES.length);
+  return MOVES[index];
 };
 
 function App() {
