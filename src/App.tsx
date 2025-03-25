@@ -12,8 +12,23 @@ const getRandomMove = (): Move => {
 function App() {
   // eslint-disable-next-line
   const [computerMove, setComputerMove] = useState<Move>(getRandomMove());
+  const [playersMove, setPlayersMove] = useState<Move | null>(null);
 
-  return <div className="App">Computer move: {computerMove}</div>;
+  const handleClick = (move: Move) => {
+    setPlayersMove(move);
+  };
+
+  return (
+    <div className="App">
+      Computer move: {computerMove}
+      Player's move : {playersMove}
+      <div>
+        <button onClick={() => handleClick('rock')}>Rock</button>
+        <button onClick={() => handleClick('paper')}>Paper</button>
+        <button onClick={() => handleClick('scissors')}>Scissors</button>
+      </div>
+    </div>
+  );
 }
 
 export default App;
