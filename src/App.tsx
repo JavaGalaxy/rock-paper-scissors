@@ -23,7 +23,7 @@ function App() {
     setPlayersMove(null);
     setComputerMove(null);
   };
-  console.log('COMPUTER MOVE', computerMove);
+
   return (
     <div className="App">
       <div className="container">
