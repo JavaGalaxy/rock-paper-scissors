@@ -10,7 +10,7 @@ const getRandomMove = (): Move => {
 };
 
 function App() {
-  // eslint-disable-next-line
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [computerMove, setComputerMove] = useState<Move>(getRandomMove());
   const [playersMove, setPlayersMove] = useState<Move | null>(null);
 
