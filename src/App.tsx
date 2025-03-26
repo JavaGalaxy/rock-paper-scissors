@@ -16,13 +16,13 @@ function App() {
 
   return (
     <div className="App">
-      <div>
+      <div className="container">
         <h2>Computer chose: {computerMove}</h2>
       </div>
-      <div>
+      <div className="container">
         <h2>Player chose: {playersMove}</h2>
       </div>
-      <div>
+      <div className="container">
         <button onClick={() => setPlayersMove('rock')}>Rock</button>
         <button onClick={() => setPlayersMove('paper')}>Paper</button>
         <button onClick={() => setPlayersMove('scissors')}>Scissors</button>
