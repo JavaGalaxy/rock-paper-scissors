@@ -29,21 +29,23 @@ function App() {
       <div className="container">
         <h2>Your move!!</h2>
       </div>
-      {playersMove && (
-        <div className="container">
-          <h2>Player chose: {playersMove}</h2>
-        </div>
-      )}
       {computerMove && (
         <div className="container">
           <h2>Computer chose: {computerMove}</h2>
         </div>
       )}
-      <div className="container">
-        <button onClick={() => handlePlayersMove('rock')}>Rock</button>
-        <button onClick={() => handlePlayersMove('paper')}>Paper</button>
-        <button onClick={() => handlePlayersMove('scissors')}>Scissors</button>
-      </div>
+      {playersMove && (
+        <div className="container">
+          <h2>Player chose: {playersMove}</h2>
+        </div>
+      )}
+      {!playersMove && (
+        <div className="container">
+          <button onClick={() => handlePlayersMove('rock')}>Rock</button>
+          <button onClick={() => handlePlayersMove('paper')}>Paper</button>
+          <button onClick={() => handlePlayersMove('scissors')}>Scissors</button>
+        </div>
+      )}
       {computerMove && (
         <div className="container">
           <button onClick={resetGame}>Play again</button>
