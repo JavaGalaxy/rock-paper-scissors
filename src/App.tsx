@@ -11,22 +11,44 @@ const getRandomMove = (): Move => {
 
 function App() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [computerMove, setComputerMove] = useState<Move>(getRandomMove());
+  const [computerMove, setComputerMove] = useState<Move | null>(null);
   const [playersMove, setPlayersMove] = useState<Move | null>(null);
 
+  const handlePlayersMove = (move: Move) => {
+    setPlayersMove(move);
+    setComputerMove(getRandomMove());
+  };
+
+  const resetGame = () => {
+    setPlayersMove(null);
+    setComputerMove(null);
+  };
+  console.log('COMPUTER MOVE', computerMove);
   return (
     <div className="App">
       <div className="container">
-        <h2>Computer chose: {computerMove}</h2>
+        <h2>Your move!!</h2>
       </div>
+      {playersMove && (
+        <div className="container">
+          <h2>Player chose: {playersMove}</h2>
+        </div>
+      )}
+      {computerMove && (
+        <div className="container">
+          <h2>Computer chose: {computerMove}</h2>
+        </div>
+      )}
       <div className="container">
-        <h2>Player chose: {playersMove}</h2>
+        <button onClick={() => handlePlayersMove('rock')}>Rock</button>
+        <button onClick={() => handlePlayersMove('paper')}>Paper</button>
+        <button onClick={() => handlePlayersMove('scissors')}>Scissors</button>
       </div>
-      <div className="container">
-        <button onClick={() => setPlayersMove('rock')}>Rock</button>
-        <button onClick={() => setPlayersMove('paper')}>Paper</button>
-        <button onClick={() => setPlayersMove('scissors')}>Scissors</button>
-      </div>
+      {computerMove && (
+        <div className="container">
+          <button onClick={resetGame}>Play again</button>
+        </div>
+      )}
     </div>
   );
 }
