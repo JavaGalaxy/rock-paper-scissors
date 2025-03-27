@@ -12,12 +12,16 @@
 .container {
   display: flex;
   gap: 10px;
-  height: 60px;
   justify-content: center;
   margin-top: 10px;
 }
 
 button {
+  height: 40px;
+  border: none;
+}
+
+.reset_button {
   padding: 12px 24px;
   background-color: #4caf50;
   color: white;
