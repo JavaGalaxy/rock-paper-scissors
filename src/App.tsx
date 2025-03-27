@@ -3,6 +3,14 @@ import './App.css';
 
 const MOVES = ['rock', 'paper', 'scissors'] as const;
 type Move = (typeof MOVES)[number];
+const EMOJIS = {
+  rock: '🪨',
+  paper: '📄',
+  scissors: '✂️',
+};
+const YOU_WIN = 'You win!';
+const YOU_LOSE = 'You lose!';
+const TIE = "It's a Tie";
 
 const getRandomMove = (): Move => {
   const index = Math.floor(Math.random() * MOVES.length);
@@ -12,9 +20,6 @@ const getRandomMove = (): Move => {
 function App() {
   const [computerMove, setComputerMove] = useState<Move | null>(null);
   const [playersMove, setPlayersMove] = useState<Move | null>(null);
-  const YOU_WIN = 'You win!';
-  const YOU_LOSE = 'You lose!';
-  const TIE = "It's a Tie";
 
   const handlePlayersMove = (move: Move) => {
     setPlayersMove(move);
@@ -65,14 +70,16 @@ function App() {
       )}
       {!playersMove && (
         <div className="container">
-          <button onClick={() => handlePlayersMove('rock')}>Rock</button>
-          <button onClick={() => handlePlayersMove('paper')}>Paper</button>
-          <button onClick={() => handlePlayersMove('scissors')}>Scissors</button>
+          <button onClick={() => handlePlayersMove('rock')}>{EMOJIS.rock}</button>
+          <button onClick={() => handlePlayersMove('paper')}>{EMOJIS.paper}</button>
+          <button onClick={() => handlePlayersMove('scissors')}>{EMOJIS.scissors}</button>
         </div>
       )}
       {computerMove && (
         <div className="container">
-          <button onClick={resetGame}>Play again</button>
+          <button onClick={resetGame} className="reset_button">
+            Play again
+          </button>
         </div>
       )}
     </div>
