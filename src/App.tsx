@@ -12,6 +12,9 @@ const getRandomMove = (): Move => {
 function App() {
   const [computerMove, setComputerMove] = useState<Move | null>(null);
   const [playersMove, setPlayersMove] = useState<Move | null>(null);
+  const YOU_WIN = 'You win!';
+  const YOU_LOSE = 'You lose!';
+  const TIE = "It's a Tie";
 
   const handlePlayersMove = (move: Move) => {
     setPlayersMove(move);
@@ -25,16 +28,16 @@ function App() {
 
   const checkWinner = () => {
     if (playersMove === computerMove) {
-      return "It's a Tie!";
+      return TIE;
     }
 
     switch (playersMove) {
       case 'rock':
-        return computerMove === 'scissors' ? 'You win!' : 'You lose!';
+        return computerMove === 'scissors' ? YOU_WIN : YOU_LOSE;
       case 'paper':
-        return computerMove === 'rock' ? 'You win!' : 'You lose!';
+        return computerMove === 'rock' ? YOU_WIN : YOU_LOSE;
       case 'scissors':
-        return computerMove === 'paper' ? 'You win!' : 'You lose!';
+        return computerMove === 'paper' ? YOU_WIN : YOU_LOSE;
       default:
         return null;
     }
@@ -57,7 +60,7 @@ function App() {
       )}
       {computerMove && playersMove && (
         <div>
-          <h2> {checkWinner()}</h2>
+          <h2>{checkWinner()}</h2>
         </div>
       )}
       {!playersMove && (
