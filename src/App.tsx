@@ -44,42 +44,30 @@ function App() {
       case 'scissors':
         return computerMove === 'paper' ? YOU_WIN : YOU_LOSE;
       default:
-        return null;
+        throw new Error(`Invalid move : ${playersMove}`);
     }
   };
 
   return (
     <div className="App">
-      <div className="container">
-        <h2>Your move!!</h2>
-      </div>
-      {computerMove && (
-        <div className="container">
-          <h2>Computer chose: {computerMove}</h2>
-        </div>
-      )}
-      {playersMove && (
-        <div className="container">
-          <h2>Player chose: {playersMove}</h2>
-        </div>
-      )}
-      {computerMove && playersMove && (
-        <div>
+      <h2 className="container">Your move!!</h2>
+
+      {playersMove ? (
+        <>
+          <h2 className="container">Computer chose: {computerMove}</h2>
+          <h2 className="container">Player chose: {playersMove}</h2>
           <h2>{checkWinner()}</h2>
-        </div>
-      )}
-      {!playersMove && (
+          <div className="container">
+            <button onClick={resetGame} className="reset_button">
+              Play again
+            </button>
+          </div>
+        </>
+      ) : (
         <div className="container">
           <button onClick={() => handlePlayersMove('rock')}>{EMOJIS.rock}</button>
           <button onClick={() => handlePlayersMove('paper')}>{EMOJIS.paper}</button>
           <button onClick={() => handlePlayersMove('scissors')}>{EMOJIS.scissors}</button>
-        </div>
-      )}
-      {computerMove && (
-        <div className="container">
-          <button onClick={resetGame} className="reset_button">
-            Play again
-          </button>
         </div>
       )}
     </div>
