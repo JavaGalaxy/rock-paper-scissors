@@ -50,8 +50,6 @@ function App() {
 
   return (
     <div className="App">
-      <h2 className="container">Your move!!</h2>
-
       {playersMove ? (
         <>
           <h2 className="container">Computer chose: {computerMove}</h2>
@@ -64,11 +62,14 @@ function App() {
           </div>
         </>
       ) : (
-        <div className="container">
-          <button onClick={() => handlePlayersMove('rock')}>{EMOJIS.rock}</button>
-          <button onClick={() => handlePlayersMove('paper')}>{EMOJIS.paper}</button>
-          <button onClick={() => handlePlayersMove('scissors')}>{EMOJIS.scissors}</button>
-        </div>
+        <>
+          <h2 className="container">Your move!!</h2>
+          <div className="container">
+            <button onClick={() => handlePlayersMove('rock')}>{EMOJIS.rock}</button>
+            <button onClick={() => handlePlayersMove('paper')}>{EMOJIS.paper}</button>
+            <button onClick={() => handlePlayersMove('scissors')}>{EMOJIS.scissors}</button>
+          </div>
+        </>
       )}
     </div>
   );
