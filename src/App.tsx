@@ -10,7 +10,6 @@ const getRandomMove = (): Move => {
 };
 
 function App() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [computerMove, setComputerMove] = useState<Move | null>(null);
   const [playersMove, setPlayersMove] = useState<Move | null>(null);
 
@@ -22,6 +21,23 @@ function App() {
   const resetGame = () => {
     setPlayersMove(null);
     setComputerMove(null);
+  };
+
+  const checkWinner = () => {
+    if (playersMove === computerMove) {
+      return "It's a Tie!";
+    }
+
+    switch (playersMove) {
+      case 'rock':
+        return computerMove === 'scissors' ? 'You win!' : 'You lose!';
+      case 'paper':
+        return computerMove === 'rock' ? 'You win!' : 'You lose!';
+      case 'scissors':
+        return computerMove === 'paper' ? 'You win!' : 'You lose!';
+      default:
+        return null;
+    }
   };
 
   return (
@@ -37,6 +53,11 @@ function App() {
       {playersMove && (
         <div className="container">
           <h2>Player chose: {playersMove}</h2>
+        </div>
+      )}
+      {computerMove && playersMove && (
+        <div>
+          <h2> {checkWinner()}</h2>
         </div>
       )}
       {!playersMove && (
