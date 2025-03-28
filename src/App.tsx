@@ -73,10 +73,11 @@ function App() {
     <div className="App">
       {playersMove ? (
         <>
-          <div className="container">
-            Computer chose: <b>{computerMove}</b> You chose: <b>{playersMove}</b> | {result}
+          <div>
+            Computer chose : <strong>{computerMove}</strong> You chose :{' '}
+            <strong>{playersMove}</strong> | {result}
           </div>
-          <div className="">
+          <div>
             Wins : {wins} / Losses : {losses} / Draws : {draws}
           </div>
           <div className="container">
