@@ -12,6 +12,8 @@ const YOU_WIN = 'You win!';
 const YOU_LOSE = 'You lose!';
 const TIE = "It's a Tie";
 
+type GameResults = { wins: number; losses: number; draws: number };
+
 const getRandomMove = (): Move => {
   const index = Math.floor(Math.random() * MOVES.length);
   return MOVES[index];
@@ -20,10 +22,29 @@ const getRandomMove = (): Move => {
 function App() {
   const [computerMove, setComputerMove] = useState<Move | null>(null);
   const [playersMove, setPlayersMove] = useState<Move | null>(null);
+  const [{ wins, losses, draws }, setGameResults] = useState<GameResults>({
+    wins: 0,
+    losses: 0,
+    draws: 0,
+  });
+  const [result, setResult] = useState<string | null>(null);
 
-  const handlePlayersMove = (move: Move) => {
+  const handleMove = (move: Move) => {
     setPlayersMove(move);
-    setComputerMove(getRandomMove());
+    const computersMove = getRandomMove();
+    setComputerMove(computersMove);
+
+    const gameResult = checkWinner(move, computersMove);
+    setResult(gameResult);
+    setGameResults((prevState) => {
+      if (gameResult === YOU_WIN) {
+        return { ...prevState, wins: prevState.wins + 1 };
+      } else if (gameResult === YOU_LOSE) {
+        return { ...prevState, losses: prevState.losses + 1 };
+      } else {
+        return { ...prevState, draws: prevState.draws + 1 };
+      }
+    });
   };
 
   const resetGame = () => {
@@ -31,7 +52,7 @@ function App() {
     setComputerMove(null);
   };
 
-  const checkWinner = () => {
+  const checkWinner = (playersMove: Move, computerMove: Move): string => {
     if (playersMove === computerMove) {
       return TIE;
     }
@@ -52,9 +73,12 @@ function App() {
     <div className="App">
       {playersMove ? (
         <>
-          <h2 className="container">Computer chose: {computerMove}</h2>
-          <h2 className="container">Player chose: {playersMove}</h2>
-          <h2>{checkWinner()}</h2>
+          <div className="container">
+            Computer chose: <b>{computerMove}</b> You chose: <b>{playersMove}</b> | {result}
+          </div>
+          <div className="">
+            Wins : {wins} / Losses : {losses} / Draws : {draws}
+          </div>
           <div className="container">
             <button onClick={resetGame} className="reset_button">
               Play again
@@ -65,9 +89,9 @@ function App() {
         <>
           <h2 className="container">Your move!!</h2>
           <div className="container">
-            <button onClick={() => handlePlayersMove('rock')}>{EMOJIS.rock}</button>
-            <button onClick={() => handlePlayersMove('paper')}>{EMOJIS.paper}</button>
-            <button onClick={() => handlePlayersMove('scissors')}>{EMOJIS.scissors}</button>
+            <button onClick={() => handleMove('rock')}>{EMOJIS.rock}</button>
+            <button onClick={() => handleMove('paper')}>{EMOJIS.paper}</button>
+            <button onClick={() => handleMove('scissors')}>{EMOJIS.scissors}</button>
           </div>
         </>
       )}
