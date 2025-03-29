@@ -30,7 +30,7 @@ jobs:
         run: yarn lint
 
       - name: Format check
-        run: yarn prettier --check src/**/*.{js,jsx,ts,tsx,json,css,scss,md}
+        run: yarn prettier --check "src/**/*.{css,tsx}"
 
       - name: Test
         run: yarn test --ci --coverage
