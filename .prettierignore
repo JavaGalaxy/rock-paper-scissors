@@ -1,4 +1,17 @@
-node_modules
-build
-dist
-public
+# Build directory and files
+build/
+build/**
+static/
+static/**
+dist/
+asset-manifest.json
+*.chunk.js
+main.*.js
+*.css.map
+*.js.map
+
+# Other directories to ignore
+node_modules/
+coverage/
+.github/
+.vscode/
