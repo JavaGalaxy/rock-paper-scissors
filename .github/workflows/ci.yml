@@ -1,4 +1,4 @@
-name: React App CI/CD
+name: ROCK PAPER SCISSORS CI/CD
 
 on:
   push:
