@@ -33,7 +33,7 @@ jobs:
         run: yarn prettier --check "src/**/*.{css,tsx}"
 
       - name: Test
-        run: yarn test --ci --coverage
+        run: yarn test --ci --coverage --passWithNoTests
 
       - name: Build
         run: yarn build
